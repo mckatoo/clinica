@@ -1,0 +1,35 @@
+{
+  "sortConfiguration": {
+    "removeUnusedImports": true,
+    "removeUnusedDefaultImports": true
+  },
+  "importStringConfiguration": {
+    "hasSemicolon": false
+  },
+  "groups": [
+    "builtin",
+    "external",
+    "internal",
+    [
+      "index",
+      "sibling",
+      "parent",
+      "object"
+    ]
+  ],
+  "pathGroupsExcludedImportTypes": [
+    "builtin"
+  ],
+  "pathGroups": [
+    {
+      "pattern": "@material-ui/**",
+      "group": "external",
+      "position": "after"
+    }
+  ],
+  "newlines-between": "always-and-inside-groups",
+  "alphabetize": {
+    "order": "asc",
+    "caseInsensitive": true
+  }
+}
