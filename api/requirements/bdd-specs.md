@@ -1,45 +1,45 @@
-# BDD Specs
-
-## Narrativa 1
+>## Feature: Atentente online
 
 ```
-  Com a atendente online.
-  Cadastrar clientes da clinica.
-  Agendar consultas e seções.
-  Consultar agenda.
+Com a atendente online
+Quero que o sistema me mostre os pacientes agendados
+Para que não tenha pacientes em espera.
 ```
 
-## Cenários
+>### Scenario: Obter dados da API
 
 ```
-  Dado que o cliente tem acesso a internet,
-  quando a atendente solicitar carregar agenda,
-  o sistema deve exibir as consultas e seções
-  vindo de uma API e substituir os dados do cache
-  com os dados mais recentes.
+Dado que a atendente tem conexão com a internet
+Quando a atendente solicitar para carregar agenda
+Então o sistema deve exibir a agenda vindo da API
+E substituir os dados do cache com os dados mais > atuais
 ```
 
-## Narrativa 2
+----------
 
+>## Feature: Atendente offline
 ```
-  Com a atendente offline.
-  Cadastrar clientes da clinica,
-  Agendar consultas e seções.
-  Consultar agenda mesmo sem internet.
+Como uma atendente offline
+Quero que o sistema mostre os próximos agendamentos
+Para eu poder realizar novos agendamentos mesmo sem internet
 ```
 
-## Cenários
-
+>### Scenario: Obter dados do Cache
 ```
-  Dado que o cliente NÃO tem acesso a internet,
-  e exista algum dado gravado no cache
-  e os dados sejam mais novos, então quando o cliente solicita
-  para carregar dos dados cadastrados na API e
-  exibir a agenda atualizada com dados do cache.
+Dado que a atendente não tem conexão com a internet
+E exista algum dado gravado no Cache
+E os dados do cache forem mais novos que 24 horas
+Quando a atendente solicitar para carregar a agenda
+Então o sistema deve exibir a agenda vinda do cache
 
-  Dado que o cliente NÃO tem acesso a internet,
-  e exista algum dado gravado no cache
-  e os dados sejam mais velhos, então quando o cliente solicita
-  para carregar dos dados cadastrados na API e
-  exibir a agenda atualizada com dados do cache.
+Dado que a atendente não tem conexão com a internet
+E exista algum dado gravado no Cache
+E os dados do cache forem mais velhos ou iguais a 24 horas
+Quando a atendente solicitar para carregar a agenda
+Então o sistema deve exibir uma mensagem de erro
+
+Dado que a atendente não tem conexão com a internet
+E o cache esteja vazio
+Quando a atendente solicitar para carregar a agenda
+Então o sistema deve exibir uma mensagem de erro
 ```
