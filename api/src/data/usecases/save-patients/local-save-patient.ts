@@ -5,6 +5,7 @@ class LocalSavePatients {
 
   async save (): Promise<void> {
     this.cacheStore.delete('scheduled')
+    this.cacheStore.insert('scheduled')
   }
 }
 

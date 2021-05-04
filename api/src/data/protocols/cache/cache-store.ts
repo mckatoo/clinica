@@ -1,3 +1,4 @@
 export interface CacheStore {
-  delete: (key: string) => void
+  delete: (deleteKey: string) => void
+  insert: (insertKey: string) => void
 }
