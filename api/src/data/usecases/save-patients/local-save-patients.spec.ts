@@ -1,14 +1,5 @@
-class LocalSavePatients {
-  constructor (private readonly cacheStore: CacheStore) {}
-
-  async save (): Promise<void> {
-    this.cacheStore.delete('scheduled')
-  }
-}
-
-export interface CacheStore {
-  delete: (key: string) => void
-}
+import { CacheStore } from '@/data/protocols/cache'
+import { LocalSavePatients } from './local-save-patient'
 
 class CacheStoreSpy implements CacheStore {
   deleteCallsCount = 0
@@ -46,5 +37,4 @@ describe('LocalSavePatients', () => {
     expect(cacheStore.deleteCallsCount).toBe(1)
     expect(cacheStore.key).toBe('scheduled')
   })
-
 })
