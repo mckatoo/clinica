@@ -1,9 +1,10 @@
 export interface SavePatients {
-  save: (patient: SavePatients.Params) => Promise<void>
+  save: (patient: Array<SavePatients.Params>) => Promise<void>
 }
 
-namespace SavePatients {
+export namespace SavePatients {
   export type Params = {
+    id: string
     name: string
     age: number
     telephne: number

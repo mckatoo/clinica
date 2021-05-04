@@ -1,4 +1,6 @@
 import { CacheStore } from '@/data/protocols/cache'
+import { SavePatients } from '@/domain'
+
 import { LocalSavePatients } from './local-save-patient'
 
 class CacheStoreSpy implements CacheStore {
@@ -6,15 +8,17 @@ class CacheStoreSpy implements CacheStore {
   insertCallsCount = 0
   deleteKey: string = ''
   insertKey: string = ''
-
+  insertValues: Array<SavePatients.Params> = []
+  
   delete (deleteKey: string): void {
     this.deleteCallsCount++
     this.deleteKey = deleteKey
   }
   
-  insert (insertKey: string): void {
+  insert (insertKey: string, value: any): void {
     this.insertCallsCount++
     this.insertKey = insertKey
+    this.insertValues = value
   }
 }
 
@@ -22,6 +26,25 @@ type SutTypes = {
   sut: LocalSavePatients
   cacheStore: CacheStoreSpy
 }
+
+  const mockPatient = (): Array<SavePatients.Params> => [
+    {
+      id: '1',
+      name: 'John',
+      address: 'Rua John',
+      age: 111,
+      pathology: 'doidão',
+      telephne: 111111111
+    },
+    {
+      id: '2',
+      name: 'Maria',
+      address: 'Rua Maria',
+      age: 22,
+      pathology: 'gripe',
+      telephne: 222222222
+    },
+  ]
 
 const makeSut = (): SutTypes => {
   const cacheStore = new CacheStoreSpy()
@@ -40,7 +63,7 @@ describe('LocalSavePatients', () => {
 
   test('should delete old cache on save', async () => {
     const { sut, cacheStore } = makeSut()
-    await sut.save()
+    await sut.save(mockPatient())
     expect(cacheStore.deleteCallsCount).toBe(1)
     expect(cacheStore.deleteKey).toBe('scheduled')
   })
@@ -50,16 +73,17 @@ describe('LocalSavePatients', () => {
     jest.spyOn(cacheStore, 'delete').mockImplementationOnce(() => {
       throw new Error()
     })
-    const promise = sut.save()
+    const promise = sut.save(mockPatient())
     expect(cacheStore.insertCallsCount).toBe(0)
     expect(promise).rejects.toThrow()
   })
 
   test('should insert new Cache if delete succeeds', async () => {
     const { sut, cacheStore } = makeSut()
-    await sut.save()
+    await sut.save(mockPatient())
     expect(cacheStore.deleteCallsCount).toBe(1)
     expect(cacheStore.insertCallsCount).toBe(1)
     expect(cacheStore.insertKey).toBe('scheduled')
+    expect(cacheStore.insertValues).toEqual(mockPatient())
   })
 })
