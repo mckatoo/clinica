@@ -3,6 +3,7 @@ import { LocalSavePatients } from './local-save-patient'
 
 class CacheStoreSpy implements CacheStore {
   deleteCallsCount = 0
+  insertCallsCount = 0
   key: string = ''
 
   delete (key: string): void {
@@ -36,5 +37,15 @@ describe('LocalSavePatients', () => {
     await sut.save()
     expect(cacheStore.deleteCallsCount).toBe(1)
     expect(cacheStore.key).toBe('scheduled')
+  })
+
+  test('should not insert new Cache if delete fails', async () => {
+    const { sut, cacheStore } = makeSut()
+    jest.spyOn(cacheStore, 'delete').mockImplementationOnce(() => {
+      throw new Error()
+    })
+    const promise = sut.save()
+    expect(cacheStore.insertCallsCount).toBe(0)
+    expect(promise).rejects.toThrow()
   })
 })
