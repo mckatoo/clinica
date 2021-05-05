@@ -1,39 +1,7 @@
-import { CacheStore } from '@/data/protocols/cache'
-import { mockPatient } from '@/data/tests/mock-patients'
+import { CacheStoreSpy, mockPatient } from '@/data/tests'
 import { SavePatients } from '@/domain/usecases'
 
 import { LocalSavePatients } from './local-save-patient'
-
-class CacheStoreSpy implements CacheStore {
-  deleteCallsCount = 0
-  insertCallsCount = 0
-  deleteKey: string = ''
-  insertKey: string = ''
-  insertValues: Array<SavePatients.Params> = []
-
-  delete (deleteKey: string): void {
-    this.deleteCallsCount++
-    this.deleteKey = deleteKey
-  }
-
-  insert (insertKey: string, value: any): void {
-    this.insertCallsCount++
-    this.insertKey = insertKey
-    this.insertValues = value
-  }
-
-  simulateDeleteError (): void {
-    jest.spyOn(CacheStoreSpy.prototype, 'delete').mockImplementationOnce(() => {
-      throw new Error()
-    })
-  }
-
-  simulateInsertError (): void {
-    jest.spyOn(CacheStoreSpy.prototype, 'insert').mockImplementationOnce(() => {
-      throw new Error()
-    })
-  }
-}
 
 type SutTypes = {
   sut: LocalSavePatients
@@ -50,14 +18,13 @@ const makeSut = (): SutTypes => {
 }
 
 describe('LocalSavePatients', () => {
-  
   let patients: Array<SavePatients.Params>
 
   beforeEach(() => {
     patients = []
     patients = mockPatient(10)
   })
-  
+
   test('should not delete cache on init', () => {
     const { cacheStore } = makeSut()
     expect(cacheStore.deleteCallsCount).toBe(0)
@@ -69,7 +36,7 @@ describe('LocalSavePatients', () => {
     expect(cacheStore.deleteCallsCount).toBe(1)
     expect(cacheStore.deleteKey).toBe('scheduled')
   })
-  
+
   test('should not insert new Cache if delete fails', () => {
     const { sut, cacheStore } = makeSut()
     cacheStore.simulateDeleteError()
@@ -94,7 +61,6 @@ describe('LocalSavePatients', () => {
     expect(promise).rejects.toThrow()
   })
 })
-function patients(patients: any) {
+function patients (patients: any) {
   throw new Error('Function not implemented.')
 }
-
