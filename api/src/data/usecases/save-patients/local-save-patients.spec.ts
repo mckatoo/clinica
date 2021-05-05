@@ -40,12 +40,12 @@ describe('LocalSavePatients', () => {
     expect(cacheStore.deleteKey).toBe('scheduled')
   })
 
-  test('should not insert new Cache if delete fails', () => {
+  test('should not insert new Cache if delete fails', async () => {
     const { sut, cacheStore } = makeSut()
     cacheStore.simulateDeleteError()
     const promise = sut.save(patients)
     expect(cacheStore.messages).toEqual([CacheStoreSpy.Message.delete])
-    expect(promise).rejects.toThrow()
+    await expect(promise).rejects.toThrow()
   })
 
   test('should insert new Cache if delete succeeds', async () => {
@@ -67,6 +67,6 @@ describe('LocalSavePatients', () => {
       CacheStoreSpy.Message.delete,
       CacheStoreSpy.Message.insert
     ])
-    expect(promise).rejects.toThrow()
+    await expect(promise).rejects.toThrow()
   })
 })
