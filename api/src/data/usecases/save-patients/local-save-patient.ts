@@ -1,12 +1,18 @@
 import { CacheStore } from '@/data/protocols/cache'
-import { SavePatients } from '@/domain/usecases';
+import { SavePatients } from '@/domain/usecases'
 
 class LocalSavePatients implements SavePatients {
-  constructor (private readonly cacheStore: CacheStore) {}
+  constructor (
+    private readonly cacheStore: CacheStore,
+    private readonly timestamp: Date
+  ) {}
 
   async save (patients: Array<SavePatients.Params>): Promise<void> {
     this.cacheStore.delete('scheduled')
-    this.cacheStore.insert('scheduled', patients)
+    this.cacheStore.insert('scheduled', {
+      timestamp: this.timestamp,
+      value: patients
+    })
   }
 }
 

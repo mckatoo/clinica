@@ -8,9 +8,9 @@ type SutTypes = {
   cacheStore: CacheStoreSpy
 }
 
-const makeSut = (): SutTypes => {
+const makeSut = (timestamp = new Date()): SutTypes => {
   const cacheStore = new CacheStoreSpy()
-  const sut = new LocalSavePatients(cacheStore)
+  const sut = new LocalSavePatients(cacheStore, timestamp)
   return {
     sut,
     cacheStore
@@ -27,6 +27,7 @@ describe('LocalSavePatients', () => {
 
   test('should not or insert delete cache on init', () => {
     const { cacheStore } = makeSut()
+
     expect(cacheStore.messages).toEqual([])
   })
 
@@ -34,26 +35,33 @@ describe('LocalSavePatients', () => {
     const { sut, cacheStore } = makeSut()
     cacheStore.simulateDeleteError()
     const promise = sut.save(patients)
+
     expect(cacheStore.messages).toEqual([CacheStoreSpy.Message.delete])
     await expect(promise).rejects.toThrow()
   })
 
   test('should insert new Cache if delete succeeds', async () => {
-    const { sut, cacheStore } = makeSut()
+    const timestamp = new Date()
+    const { sut, cacheStore } = makeSut(timestamp)
     await sut.save(patients)
+
     expect(cacheStore.messages).toEqual([
       CacheStoreSpy.Message.delete,
       CacheStoreSpy.Message.insert
     ])
     expect(cacheStore.deleteKey).toBe('scheduled')
     expect(cacheStore.insertKey).toBe('scheduled')
-    expect(cacheStore.insertValues).toEqual(patients)
+    expect(cacheStore.insertValues).toEqual({
+      timestamp,
+      value: patients
+    })
   })
-  
+
   test('should throw if insert throws', async () => {
     const { sut, cacheStore } = makeSut()
     cacheStore.simulateInsertError()
     const promise = sut.save(patients)
+
     expect(cacheStore.messages).toEqual([
       CacheStoreSpy.Message.delete,
       CacheStoreSpy.Message.insert
