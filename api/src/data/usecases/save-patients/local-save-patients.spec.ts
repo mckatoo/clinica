@@ -43,7 +43,7 @@ describe('LocalSavePatients', () => {
   test('should insert new Cache if delete succeeds', async () => {
     const timestamp = new Date()
     const { sut, cacheStore } = makeSut(timestamp)
-    await sut.save(patients)
+    const promise = sut.save(patients)
 
     expect(cacheStore.messages).toEqual([
       CacheStoreSpy.Message.delete,
@@ -55,6 +55,7 @@ describe('LocalSavePatients', () => {
       timestamp,
       value: patients
     })
+    await expect(promise).resolves.toBeFalsy()
   })
 
   test('should throw if insert throws', async () => {
