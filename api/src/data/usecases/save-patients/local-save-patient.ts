@@ -8,8 +8,7 @@ class LocalSavePatients implements SavePatients {
   ) {}
 
   async save (patients: Array<SavePatients.Params>): Promise<void> {
-    this.cacheStore.delete('scheduled')
-    this.cacheStore.insert('scheduled', {
+    this.cacheStore.replace('scheduled', {
       timestamp: this.timestamp,
       value: patients
     })
