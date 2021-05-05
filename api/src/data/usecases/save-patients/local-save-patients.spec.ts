@@ -1,5 +1,6 @@
 import { CacheStore } from '@/data/protocols/cache'
-import { SavePatients } from '@/domain'
+import { mockPatient } from '@/data/tests/mock-patients'
+import { SavePatients } from '@/domain/usecases'
 
 import { LocalSavePatients } from './local-save-patient'
 
@@ -39,25 +40,6 @@ type SutTypes = {
   cacheStore: CacheStoreSpy
 }
 
-const mockPatient = (): Array<SavePatients.Params> => [
-  {
-    id: '1',
-    name: 'John',
-    address: 'Rua John',
-    age: 111,
-    pathology: 'doidão',
-    telephne: 111111111
-  },
-  {
-    id: '2',
-    name: 'Maria',
-    address: 'Rua Maria',
-    age: 22,
-    pathology: 'gripe',
-    telephne: 222222222
-  }
-]
-
 const makeSut = (): SutTypes => {
   const cacheStore = new CacheStoreSpy()
   const sut = new LocalSavePatients(cacheStore)
@@ -68,6 +50,14 @@ const makeSut = (): SutTypes => {
 }
 
 describe('LocalSavePatients', () => {
+  
+  let patients: Array<SavePatients.Params>
+
+  beforeEach(() => {
+    patients = []
+    patients = mockPatient(10)
+  })
+  
   test('should not delete cache on init', () => {
     const { cacheStore } = makeSut()
     expect(cacheStore.deleteCallsCount).toBe(0)
@@ -75,32 +65,36 @@ describe('LocalSavePatients', () => {
 
   test('should delete old cache on save', async () => {
     const { sut, cacheStore } = makeSut()
-    await sut.save(mockPatient())
+    await sut.save(patients)
     expect(cacheStore.deleteCallsCount).toBe(1)
     expect(cacheStore.deleteKey).toBe('scheduled')
   })
-
+  
   test('should not insert new Cache if delete fails', () => {
     const { sut, cacheStore } = makeSut()
     cacheStore.simulateDeleteError()
-    const promise = sut.save(mockPatient())
+    const promise = sut.save(patients)
     expect(cacheStore.insertCallsCount).toBe(0)
     expect(promise).rejects.toThrow()
   })
-  
+
   test('should insert new Cache if delete succeeds', async () => {
     const { sut, cacheStore } = makeSut()
-    await sut.save(mockPatient())
+    await sut.save(patients)
     expect(cacheStore.deleteCallsCount).toBe(1)
     expect(cacheStore.insertCallsCount).toBe(1)
     expect(cacheStore.insertKey).toBe('scheduled')
-    expect(cacheStore.insertValues).toEqual(mockPatient())
+    expect(cacheStore.insertValues).toEqual(patients)
   })
-  
+
   test('should throw if insert throws', async () => {
     const { sut, cacheStore } = makeSut()
     cacheStore.simulateInsertError()
-    const promise = sut.save(mockPatient())
+    const promise = sut.save(patients)
     expect(promise).rejects.toThrow()
   })
 })
+function patients(patients: any) {
+  throw new Error('Function not implemented.')
+}
+

@@ -7,7 +7,7 @@ export namespace SavePatients {
     id: string
     name: string
     age: number
-    telephne: number
+    telephone: string
     pathology: string
     address: string
   }

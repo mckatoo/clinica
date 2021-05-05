@@ -1,5 +1,5 @@
 import { CacheStore } from '@/data/protocols/cache'
-import { SavePatients } from '@/domain'
+import { SavePatients } from '@/domain/usecases';
 
 class LocalSavePatients implements SavePatients {
   constructor (private readonly cacheStore: CacheStore) {}
