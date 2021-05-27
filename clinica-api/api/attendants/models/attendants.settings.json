@@ -1,8 +1,8 @@
 {
   "kind": "collectionType",
-  "collectionName": "patients",
+  "collectionName": "attendants",
   "info": {
-    "name": "Patient",
+    "name": "Attendants",
     "description": ""
   },
   "options": {
@@ -16,20 +16,13 @@
       "type": "string",
       "required": true
     },
-    "phone": {
-      "type": "string",
-      "required": true
+    "patients": {
+      "collection": "patient"
     },
-    "address": {
-      "type": "text",
-      "required": true
+    "course": {
+      "model": "course"
     },
-    "cpf": {
-      "type": "string",
-      "unique": true,
-      "required": true
-    },
-    "rg": {
+    "RA": {
       "type": "string",
       "unique": true,
       "required": true

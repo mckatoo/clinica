@@ -1,10 +1,9 @@
-import { screen } from '@testing-library/react'
-import { renderWithTheme } from 'utils/tests/helpers'
 import Main from '.'
+import { render, screen } from 'utils/test-utils'
 
 describe('<Main />', () => {
   it('should render the heading', () => {
-    const { container } = renderWithTheme(<Main />)
+    const { container } = render(<Main />)
 
     expect(
       screen.getByRole('heading', { name: /DevNaRoça/i })
@@ -14,7 +13,7 @@ describe('<Main />', () => {
   })
 
   it('should render the colors correctly', () => {
-    const { container } = renderWithTheme(<Main />)
+    const { container } = render(<Main />)
     expect(container).toHaveStyle("backgroundColor: '#06092b'")
   })
 })

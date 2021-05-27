@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "courses",
+  "info": {
+    "name": "Course"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "coordinator": {
+      "type": "string",
+      "required": true
+    },
+    "attendants": {
+      "collection": "attendants"
+    }
+  }
+}

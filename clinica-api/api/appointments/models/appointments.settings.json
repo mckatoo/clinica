@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "appointments",
+  "info": {
+    "name": "Appointments",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "start": {
+      "type": "datetime",
+      "required": true,
+      "unique": false
+    },
+    "patient": {
+      "model": "patient"
+    },
+    "ending": {
+      "type": "datetime",
+      "required": true
+    },
+    "attendant": {
+      "model": "attendants"
+    },
+    "user": {
+      "plugin": "users-permissions",
+      "model": "user"
+    }
+  }
+}
