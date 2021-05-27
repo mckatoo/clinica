@@ -13,6 +13,7 @@
   "env": {
     "test": {
       "plugins": [
+        ["@babel/plugin-proposal-private-property-in-object"],
         [
           "babel-plugin-styled-components",
           {
