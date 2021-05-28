@@ -1,7 +1,6 @@
 {
   "presets": ["next/babel", "@babel/preset-typescript"],
   "plugins": [
-    ["@babel/plugin-proposal-private-property-in-object", { "loose": true }],
     [
       "babel-plugin-styled-components",
       {
@@ -13,7 +12,6 @@
   "env": {
     "test": {
       "plugins": [
-        ["@babel/plugin-proposal-private-property-in-object"],
         [
           "babel-plugin-styled-components",
           {
