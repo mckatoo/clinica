@@ -34,6 +34,7 @@
     }
   },
   "dependencies": {
+    "@styled-icons/boxicons-regular": "^10.23.0",
     "next": "10.2.3",
     "next-auth": "^3.23.3",
     "next-pwa": "^5.2.14",
