@@ -4,29 +4,29 @@ import Heading from '.'
 
 describe('<Heading />', () => {
   it('should render a white heading by default', () => {
-    render(<Heading>Won Games</Heading>)
-    expect(screen.getByRole('heading', { name: /won games/i })).toHaveStyle({
+    render(<Heading>Uniesi</Heading>)
+    expect(screen.getByRole('heading', { name: /uniesi/i })).toHaveStyle({
       color: '#EBFFFD'
     })
   })
 
   it('should render a black heading when color is passed', () => {
-    render(<Heading color="black">Won Games</Heading>)
-    expect(screen.getByRole('heading', { name: /won games/i })).toHaveStyle({
+    render(<Heading color="black">Uniesi</Heading>)
+    expect(screen.getByRole('heading', { name: /uniesi/i })).toHaveStyle({
       color: '#030517'
     })
   })
 
   it('should render a heading with a line to the left side', () => {
-    render(<Heading lineLeft>Won Games</Heading>)
-    expect(screen.getByRole('heading', { name: /won games/i })).toHaveStyle({
+    render(<Heading lineLeft>Uniesi</Heading>)
+    expect(screen.getByRole('heading', { name: /uniesi/i })).toHaveStyle({
       'border-left': '0.7rem solid #ED3237'
     })
   })
 
   it('should render a heading with a line at the bottom', () => {
-    render(<Heading lineBottom>Won Games</Heading>)
-    expect(screen.getByRole('heading', { name: /won games/i })).toHaveStyleRule(
+    render(<Heading lineBottom>Uniesi</Heading>)
+    expect(screen.getByRole('heading', { name: /uniesi/i })).toHaveStyleRule(
       'border-bottom',
       '0.5rem solid #ED3237',
       {
@@ -36,12 +36,12 @@ describe('<Heading />', () => {
   })
 
   it('should render a heading with a small size', () => {
-    render(<Heading size="small">Won Games</Heading>)
-    expect(screen.getByRole('heading', { name: /won games/i })).toHaveStyle({
+    render(<Heading size="small">Uniesi</Heading>)
+    expect(screen.getByRole('heading', { name: /uniesi/i })).toHaveStyle({
       'font-size': '1.6rem'
     })
 
-    expect(screen.getByRole('heading', { name: /won games/i })).toHaveStyleRule(
+    expect(screen.getByRole('heading', { name: /uniesi/i })).toHaveStyleRule(
       'width',
       '3rem',
       {
@@ -51,9 +51,9 @@ describe('<Heading />', () => {
   })
 
   it('should render a heading with a huge size', () => {
-    render(<Heading size="huge">Won Games</Heading>)
+    render(<Heading size="huge">Uniesi</Heading>)
 
-    expect(screen.getByRole('heading', { name: /won games/i })).toHaveStyle({
+    expect(screen.getByRole('heading', { name: /uniesi/i })).toHaveStyle({
       'font-size': '5.2rem'
     })
   })
