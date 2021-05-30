@@ -35,6 +35,8 @@
   },
   "dependencies": {
     "@styled-icons/boxicons-regular": "^10.23.0",
+    "@styled-icons/material-outlined": "^10.28.0",
+    "@styled-icons/remix-fill": "^10.18.0",
     "next": "10.2.3",
     "next-auth": "^3.23.3",
     "next-pwa": "^5.2.14",
@@ -55,6 +57,7 @@
     "@storybook/react": "^6.2.9",
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
+    "@testing-library/user-event": "^13.1.9",
     "@types/jest": "^26.0.22",
     "@types/node": "^15.6.1",
     "@types/react": "^17.0.8",

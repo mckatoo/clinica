@@ -16,13 +16,13 @@ export default {
   }
 } as Meta
 
-export const Default: Story<ButtonProps> = args => <Button {...args} />
+export const Default: Story<ButtonProps> = (args) => <Button {...args} />
 
 Default.args = {
   children: 'To Schedule'
 }
 
-export const withIcon: Story<ButtonProps> = args => <Button {...args} />
+export const withIcon: Story<ButtonProps> = (args) => <Button {...args} />
 
 withIcon.args = {
   size: 'small',
@@ -30,7 +30,7 @@ withIcon.args = {
   icon: <CalendarPlus />
 }
 
-export const asLink: Story<ButtonProps> = args => <Button {...args} />
+export const asLink: Story<ButtonProps> = (args) => <Button {...args} />
 
 asLink.args = {
   size: 'large',

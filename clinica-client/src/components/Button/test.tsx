@@ -1,9 +1,8 @@
+import { render, screen } from 'utils/test-utils'
 
-import { render, screen } from 'utils/test-utils';
+import { CalendarPlus } from '@styled-icons/boxicons-regular'
 
-import { CalendarPlus } from '@styled-icons/boxicons-regular';
-
-import Button from './';
+import Button from './'
 
 describe('<Button />', () => {
   it('should render the medium size by default', () => {
@@ -66,25 +65,21 @@ describe('<Button />', () => {
       color: '#ED3237'
     })
 
-    expect(screen.getByRole('button', { name: /to schedule/i })).toHaveStyleRule(
-      'background',
-      'none',
-      {
-        modifier: ':hover'
-      }
-    )
+    expect(
+      screen.getByRole('button', { name: /to schedule/i })
+    ).toHaveStyleRule('background', 'none', {
+      modifier: ':hover'
+    })
   })
 
   it('should render a disabled Button', () => {
     render(<Button disabled>To Schedule</Button>)
 
-    expect(screen.getByRole('button', { name: /to schedule/i })).toHaveStyleRule(
-      'cursor',
-      'not-allowed',
-      {
-        modifier: ':disabled'
-      }
-    )
+    expect(
+      screen.getByRole('button', { name: /to schedule/i })
+    ).toHaveStyleRule('cursor', 'not-allowed', {
+      modifier: ':disabled'
+    })
   })
 
   it('should render Button as a link', () => {
