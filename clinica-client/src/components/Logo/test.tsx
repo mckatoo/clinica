@@ -51,11 +51,12 @@ describe('<Logo />', () => {
 
   it('should render a bigger logo without text if hideOnMobile', () => {
     render(<Logo hideOnMobile />)
-    expect(
-      screen.getByLabelText(/Uniesi - Centro de Universitário de Itapira/i)
-        .parentElement
-    ).toHaveStyleRule('width', '5.8rem', {
+    const logo = screen.getByLabelText(
+      /Uniesi - Centro de Universitário de Itapira/i
+    )
+    expect(logo.parentElement).toHaveStyleRule('width', '5.8rem', {
       media: '(max-width: 768px)'
     })
+    expect(logo.firstChild).toHaveClass('text')
   })
 })
