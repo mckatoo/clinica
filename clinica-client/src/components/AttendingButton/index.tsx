@@ -1,5 +1,8 @@
-// import { Task, TaskX } from '@styled-icons/boxicons-regular'
 import Button, { ButtonProps } from 'components/Button'
+
+// import { Task, TaskX } from '@styled-icons/boxicons-regular'
+import { Task } from '@styled-icons/boxicons-regular'
+
 // import { useAttending } from 'hooks/use-attending'
 
 type AttendingButtonProps = {
@@ -10,7 +13,7 @@ type AttendingButtonProps = {
 const AttendingButton = ({
   // id,
   size = 'small',
-  hasText = false
+  hasText = true
 }: AttendingButtonProps) => {
   // const { isInAttending, addToAttending, removeFromAttending } = useAttending()
   // const ButtonText = isInAttending(id) ? 'Remove from attending' : 'Add to attending'
@@ -18,6 +21,7 @@ const AttendingButton = ({
 
   return (
     <Button
+      icon={<Task />}
       // icon={isInAttending(id) ? <TaskX /> : <Task />}
       size={size}
       // onClick={() => (isInAttending(id) ? removeFromAttending(id) : addToAttending(id))}
