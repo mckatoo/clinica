@@ -12,6 +12,7 @@ export const Wrapper = styled.article`
 `
 
 export const ImageBox = styled.a`
+  text-decoration: none;
   position: relative;
   min-height: 14rem;
   width: 100%;
@@ -44,6 +45,21 @@ export const ImageBox = styled.a`
       background-position: 40rem 0;
     }
   }
+
+  ${({ theme }) => css`
+    p {
+      font-size: 10rem;
+      color: ${theme.colors.primary};
+      background-color: ${theme.colors.lightBg};
+      width: 14rem;
+      height: 14rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+    }
+  `}
 `
 
 export const Content = styled.div`

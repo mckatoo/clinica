@@ -47,7 +47,20 @@ export const WithRibbon: Story<PatientCardProps> = (args) => (
 )
 
 WithRibbon.args = {
-  ribbon: '20% OFF',
+  ribbon: '12/05/2021',
   ribbonSize: 'small',
   ribbonColor: 'primary'
+}
+
+export const WithOutPhoto: Story<PatientCardProps> = (args) => (
+  <div style={{ width: '30rem' }}>
+    <PatientCard {...args} />
+  </div>
+)
+
+WithOutPhoto.args = {
+  ribbon: '12/05/2021',
+  ribbonSize: 'small',
+  ribbonColor: 'primary',
+  photo: undefined
 }
