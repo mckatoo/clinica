@@ -6,7 +6,7 @@ export default {
   component: Dropdown,
   parameters: {
     backgrounds: {
-      default: 'won-dark'
+      default: 'ikatoo-dark'
     }
   }
 } as Meta

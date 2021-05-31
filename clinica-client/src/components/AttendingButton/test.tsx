@@ -9,7 +9,7 @@ import AttendingButton from './'
 
 describe('AttendingButton', () => {
   it('should render a AttendingButton with id=1', () => {
-    render(<AttendingButton id='1' />)
+    render(<AttendingButton id="1" />)
 
     const button = screen.getByLabelText(/add to attending/i)
     expect(button).toBeInTheDocument()

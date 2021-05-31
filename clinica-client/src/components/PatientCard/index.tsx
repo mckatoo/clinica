@@ -38,10 +38,11 @@ const PatientCard = ({
     )}
     <Link href={`/patient/${slug}`} passHref>
       <S.ImageBox>
-        {photo
-        ? <Image src={photo} alt={name} layout="fill" objectFit="cover" />
-        : <p>{name[0]}</p>
-        }
+        {photo ? (
+          <Image src={photo} alt={name} layout="fill" objectFit="cover" />
+        ) : (
+          <p>{name[0]}</p>
+        )}
       </S.ImageBox>
     </Link>
     <S.Content>

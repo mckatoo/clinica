@@ -26,7 +26,7 @@ const UserDropdown = ({ username }: UserDropdownProps) => {
       }
     >
       <S.Nav>
-        <Link href='/profile/me' passHref>
+        <Link href="/profile/me" passHref>
           <S.Link>
             <AccountCircle />
             <span>My profile</span>
@@ -34,7 +34,7 @@ const UserDropdown = ({ username }: UserDropdownProps) => {
         </Link>
 
         <S.Link
-          role='button'
+          role="button"
           onClick={async () => {
             const data = await signOut({
               redirect: false,
@@ -42,7 +42,7 @@ const UserDropdown = ({ username }: UserDropdownProps) => {
             })
             push(data.url)
           }}
-          title='Sign out'
+          title="Sign out"
         >
           <ExitToApp />
           <span>Sign out</span>

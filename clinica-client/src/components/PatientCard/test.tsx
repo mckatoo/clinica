@@ -47,9 +47,9 @@ describe('<PatientCard />', () => {
     render(
       <PatientCard
         {...props}
-        ribbon='My Ribbon'
-        ribbonColor='secondary'
-        ribbonSize='small'
+        ribbon="My Ribbon"
+        ribbonColor="secondary"
+        ribbonSize="small"
       />
     )
     const ribbon = screen.getByText(/my ribbon/i)

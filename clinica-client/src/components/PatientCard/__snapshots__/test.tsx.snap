@@ -64,6 +64,8 @@ exports[`<PatientCard /> should render correctly 1`] = `
 }
 
 .c1 {
+  -webkit-text-decoration: none;
+  text-decoration: none;
   position: relative;
   min-height: 14rem;
   width: 100%;
@@ -87,6 +89,26 @@ exports[`<PatientCard /> should render correctly 1`] = `
 
 .c1 img {
   max-height: 14rem;
+}
+
+.c1 p {
+  font-size: 10rem;
+  color: #ED3237;
+  background-color: #07BEB8;
+  width: 14rem;
+  height: 14rem;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 .c2 {
