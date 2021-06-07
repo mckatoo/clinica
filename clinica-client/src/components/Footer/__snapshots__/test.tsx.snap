@@ -393,17 +393,17 @@ exports[`<Footer /> should render 4 column topics 1`] = `
         <a
           href="/physiotherapy"
         >
-          physiotherapy
+          Physiotherapy
         </a>
         <a
           href="/physiotherapy"
         >
-          nursing
+          Nursing
         </a>
         <a
           href="/physiotherapy"
         >
-          nutrition
+          Nutrition
         </a>
         <a
           href="/search"
