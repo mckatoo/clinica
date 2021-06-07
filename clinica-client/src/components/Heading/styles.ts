@@ -40,8 +40,14 @@ export const wrapperModifiers = {
       left: 0;
       bottom: -0.5rem;
       content: '';
-      width: 5rem;
-      border-bottom: 0.5rem solid ${theme.colors[lineColor]};
+      width: 30%;
+      /* border-bottom: 0.5rem solid ${theme.colors[lineColor]}; */
+      border-bottom: 0.5rem solid;
+      border-image: linear-gradient(
+        to left,
+        ${theme.colors.lightBg},
+        ${theme.colors[lineColor]}
+      ) 1 0;
     }
   `
 }
