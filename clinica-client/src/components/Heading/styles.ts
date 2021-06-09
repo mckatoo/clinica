@@ -44,10 +44,11 @@ export const wrapperModifiers = {
       /* border-bottom: 0.5rem solid ${theme.colors[lineColor]}; */
       border-bottom: 0.5rem solid;
       border-image: linear-gradient(
-        to left,
-        ${theme.colors.lightBg},
-        ${theme.colors[lineColor]}
-      ) 1 0;
+          to left,
+          ${theme.colors.lightBg},
+          ${theme.colors[lineColor]}
+        )
+        1 0;
     }
   `
 }

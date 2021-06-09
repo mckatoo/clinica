@@ -36,7 +36,7 @@ describe('<TextContent />', () => {
     }).parentElement
 
     expect(wrapper).toHaveStyle({
-      color: '#FAFAFA' // theme.colors.white
+      color: '#EBFFFD' // theme.colors.white
     })
 
     expect(wrapper).toHaveStyleRule('color', '#030517', {

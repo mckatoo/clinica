@@ -32,3 +32,16 @@ export const withError: Story<TextAreaFieldProps> = args => (
 withError.args = {
   error: 'Ops...something is wrong'
 }
+
+export const withInitialValue: Story<TextAreaFieldProps> = args => (
+  <div style={{ maxWidth: 300, padding: 15 }}>
+    <TextAreaField {...args} />
+  </div>
+)
+
+withInitialValue.args = {
+  initialValue: `Endereço do fulano
+Cidade
+Estado
+CEP`
+}

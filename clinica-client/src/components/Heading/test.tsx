@@ -28,7 +28,7 @@ describe('<Heading />', () => {
     render(<Heading lineBottom>Uniesi</Heading>)
     expect(screen.getByRole('heading', { name: /uniesi/i })).toHaveStyleRule(
       'border-bottom',
-      '0.5rem solid #ED3237',
+      '0.5rem solid',
       {
         modifier: '::after'
       }
@@ -67,9 +67,16 @@ describe('<Heading />', () => {
 
     const heading = screen.getByRole('heading', { name: /lorem ipsum/i })
     expect(heading).toHaveStyle({ 'border-left': '0.7rem solid #ED3237' })
-    expect(heading).toHaveStyleRule('border-bottom', '0.5rem solid #ED3237', {
+    expect(heading).toHaveStyleRule('border-bottom', '0.5rem solid', {
       modifier: '::after'
     })
+    expect(heading).toHaveStyleRule(
+      'border-image',
+      'linear-gradient( to left,#07BEB8,#ED3237 ) 1 0',
+      {
+        modifier: '::after'
+      }
+    )
   })
 
   it('should render a Heading with a secondary line color', () => {
@@ -81,8 +88,15 @@ describe('<Heading />', () => {
 
     const heading = screen.getByRole('heading', { name: /lorem ipsum/i })
     expect(heading).toHaveStyle({ 'border-left': '0.7rem solid #F98A05' })
-    expect(heading).toHaveStyleRule('border-bottom', '0.5rem solid #F98A05', {
+    expect(heading).toHaveStyleRule('border-bottom', '0.5rem solid', {
       modifier: '::after'
     })
+    expect(heading).toHaveStyleRule(
+      'border-image',
+      'linear-gradient( to left,#07BEB8,#F98A05 ) 1 0',
+      {
+        modifier: '::after'
+      }
+    )
   })
 })

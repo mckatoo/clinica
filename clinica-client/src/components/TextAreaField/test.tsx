@@ -1,50 +1,35 @@
 import { render, screen, waitFor } from 'utils/test-utils'
 
-import { Email } from '@styled-icons/material-outlined'
 import userEvent from '@testing-library/user-event'
 
-import TextField from './'
+import TextAreaField from './'
 
-describe('<TextField />', () => {
+describe('<TextAreaField />', () => {
   it('Renders with Label', () => {
-    render(<TextField label="Label" name="Label" />)
+    render(<TextAreaField label="Label" name="Label" />)
 
     expect(screen.getByLabelText('Label')).toBeInTheDocument()
   })
 
   it('Renders without Label', () => {
-    render(<TextField />)
+    render(<TextAreaField />)
 
     expect(screen.queryByLabelText('Label')).not.toBeInTheDocument()
   })
 
   it('Renders with placeholder', () => {
-    render(<TextField placeholder="hey you" />)
+    render(<TextAreaField placeholder="hey you" />)
 
     expect(screen.getByPlaceholderText('hey you')).toBeInTheDocument()
   })
 
-  it('Renders with Icon', () => {
-    render(<TextField icon={<Email data-testid="icon" />} />)
-
-    expect(screen.getByTestId('icon')).toBeInTheDocument()
-  })
-
-  it('Renders with Icon on the right side', () => {
-    render(
-      <TextField icon={<Email data-testid="icon" />} iconPosition="right" />
-    )
-
-    expect(screen.getByTestId('icon').parentElement).toHaveStyle({ order: 1 })
-  })
-
   it('Changes its value when typing', async () => {
-    const onInputChange = jest.fn()
+    const onTextAreaChange = jest.fn()
     render(
-      <TextField
-        onInputChange={onInputChange}
-        label="TextField"
-        name="TextField"
+      <TextAreaField
+        onTextAreaChange={onTextAreaChange}
+        label="TextAreaField"
+        name="TextAreaField"
       />
     )
 
@@ -54,18 +39,18 @@ describe('<TextField />', () => {
 
     await waitFor(() => {
       expect(input).toHaveValue(text)
-      expect(onInputChange).toHaveBeenCalledTimes(text.length)
+      expect(onTextAreaChange).toHaveBeenCalledTimes(text.length)
     })
-    expect(onInputChange).toHaveBeenCalledWith(text)
+    expect(onTextAreaChange).toHaveBeenCalledWith(text)
   })
 
   it('Does not changes its value when disabled', async () => {
-    const onInputChange = jest.fn()
+    const onTextAreaChange = jest.fn()
     render(
-      <TextField
-        onInputChange={onInputChange}
-        label="TextField"
-        name="TextField"
+      <TextAreaField
+        onTextAreaChange={onTextAreaChange}
+        label="TextAreaField"
+        name="TextAreaField"
         disabled
       />
     )
@@ -79,16 +64,12 @@ describe('<TextField />', () => {
     await waitFor(() => {
       expect(input).not.toHaveValue(text)
     })
-    expect(onInputChange).not.toHaveBeenCalled()
+    expect(onTextAreaChange).not.toHaveBeenCalled()
   })
 
   it('Renders with error', () => {
     const { container } = render(
-      <TextField
-        icon={<Email data-testid="icon" />}
-        label="TextField"
-        error="Error message"
-      />
+      <TextAreaField label="TextAreaField" error="Error message" />
     )
 
     expect(screen.getByText('Error message')).toBeInTheDocument()
@@ -97,9 +78,9 @@ describe('<TextField />', () => {
   })
 
   it('Is accessible by tab', () => {
-    render(<TextField label="TextField" name="TextField" />)
+    render(<TextAreaField label="TextAreaField" name="TextAreaField" />)
 
-    const input = screen.getByLabelText('TextField')
+    const input = screen.getByLabelText('TextAreaField')
     expect(document.body).toHaveFocus()
 
     userEvent.tab()
@@ -107,9 +88,11 @@ describe('<TextField />', () => {
   })
 
   it('Is not accessible by tab when disabled', () => {
-    render(<TextField label="TextField" name="TextField" disabled />)
+    render(
+      <TextAreaField label="TextAreaField" name="TextAreaField" disabled />
+    )
 
-    const input = screen.getByLabelText('TextField')
+    const input = screen.getByLabelText('TextAreaField')
     expect(document.body).toHaveFocus()
 
     userEvent.tab()

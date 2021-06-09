@@ -23,6 +23,8 @@ export const TextAreaWrapper = styled.div`
 export const TextArea = styled.textarea`
   ${({ theme }) => css`
     overflow: hidden;
+    width: 100%;
+    height: auto;
     resize: none;
     color: ${theme.colors.black};
     font-family: ${theme.font.family};
@@ -33,9 +35,8 @@ export const TextArea = styled.textarea`
     outline: none;
 
     &:-webkit-autofill {
-      -webkit-box-shadow: 0 0 0 ${theme.spacings.small} ${
-    theme.colors.lightGray
-  } inset;
+      -webkit-box-shadow: 0 0 0 ${theme.spacings.small}
+        ${theme.colors.lightGray} inset;
       filter: none;
     }
   `}

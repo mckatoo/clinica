@@ -12,15 +12,17 @@
 // import { QUERY_RECOMMENDED } from 'graphql/queries/recommended'
 // import { QUERY_UPCOMING } from 'graphql/queries/upcoming'
 // import { GetStaticProps } from 'next'
+import mock from 'components/PatientInfo/mock'
 import { useRouter } from 'next/router'
 import Patient, { PatientTemplateProps } from 'templates/Patient'
+
 // import { initializeApollo } from 'utils/apollo'
-import { getImageUrl } from 'utils/getImageUrl'
+// import { getImageUrl } from 'utils/getImageUrl'
 // import { patientsMapper, highlightMapper } from 'utils/mappers'
 
 // const apolloClient = initializeApollo()
 
-export default function Index (props: PatientTemplateProps) {
+export default function Index(props: PatientTemplateProps) {
   const router = useRouter()
 
   // se a rota não tiver sido gerada ainda
@@ -31,24 +33,18 @@ export default function Index (props: PatientTemplateProps) {
   return <Patient {...props} />
 }
 
-export async function getStaticPaths () {
+export async function getStaticPaths() {
   return {
     paths: [{ params: { slug: '29032543890' } }],
     fallback: false
   }
 }
 
-export async function getStaticProps () {
+export async function getStaticProps() {
   return {
     props: {
       patientInfo: {
-        name: 'Milton Carlos Katoo',
-        address: 'Rua Dr. Miguel Couto, 81\nVila Boa Esperança\nItapira-SP',
-        phone: '(19) 99906 5094',
-        photo: '../img/Milton.jpg',
-        cpf: '290.325.438-90',
-        rg: '30.896.256-4',
-        birth_date: '30/12/1976'
+        ...mock
       }
     }
   }

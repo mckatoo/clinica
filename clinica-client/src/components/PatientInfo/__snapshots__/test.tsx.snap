@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<PatientInfo /> should render patient informations 1`] = `
-.c6 {
+.c15 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -28,23 +28,23 @@ exports[`<PatientInfo /> should render patient informations 1`] = `
   padding: 0.8rem 4.8rem;
 }
 
-.c6:focus {
+.c15:focus {
   outline: 1px dashed;
 }
 
-.c6:hover {
+.c15:hover {
   background: linear-gradient(180deg,#B3281C 0%,#EF5549 50%);
 }
 
-.c6 svg {
+.c15 svg {
   width: 1.5rem;
 }
 
-.c6 svg + span {
+.c15 svg + span {
   margin-left: 0.8rem;
 }
 
-.c7 {
+.c16 {
   display: inline-block;
   vertical-align: middle;
   overflow: hidden;
@@ -62,13 +62,12 @@ exports[`<PatientInfo /> should render patient informations 1`] = `
   left: 0;
   bottom: -0.5rem;
   content: '';
-  width: 5rem;
-  border-bottom: 0.5rem solid #ED3237;
+  width: 30%;
+  border-bottom: 0.5rem solid;
+  border-image: linear-gradient( to left,#07BEB8,#ED3237 ) 1 0;
 }
 
-.c3 {
-  position: absolute;
-  top: 1.6rem;
+.c11 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -77,36 +76,140 @@ exports[`<PatientInfo /> should render patient informations 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  font-weight: 600;
-  color: #EBFFFD;
-  z-index: 10;
-  background-color: #F98A05;
+  background: #EAEAEA;
+  border-radius: 0.2rem;
+  padding: 0 1.6rem;
+  border: 0.2rem solid;
+  border-color: #EAEAEA;
+}
+
+.c11:focus-within {
+  box-shadow: 0 0 0.5rem #ED3237;
+}
+
+.c13 {
+  overflow: hidden;
+  resize: none;
+  color: #030517;
+  font-family: Poppins,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif;
+  font-size: 1.6rem;
+  padding: 0.8rem 0;
+  background: transparent;
+  border: 0;
+  outline: none;
+}
+
+.c13:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 2.4rem #EAEAEA inset;
+  -webkit-filter: none;
+  filter: none;
+}
+
+.c10 {
   font-size: 1.4rem;
-  padding: 0 2.4rem;
-  height: 3.6rem;
-  right: -2rem;
+  color: #030517;
+  cursor: pointer;
 }
 
-.c3::before {
-  content: '';
-  position: absolute;
-  right: 0;
-  border-style: solid;
-  border-left-width: 0rem;
-  border-right-color: transparent;
-  border-bottom-color: transparent;
-  border-bottom-width: 1rem;
+.c8 .c9,
+.c8 .c12 {
+  cursor: not-allowed;
+  color: #8F8F8F;
 }
 
-.c3::before {
-  border-left-color: #955303;
-  border-top-color: #955303;
+.c8 .c9::-webkit-input-placeholder,
+.c8 .c12::-webkit-input-placeholder {
+  color: currentColor;
 }
 
-.c3::before {
-  top: 3.6rem;
-  border-top-width: 1rem;
-  border-right-width: 2rem;
+.c8 .c9::-moz-placeholder,
+.c8 .c12::-moz-placeholder {
+  color: currentColor;
+}
+
+.c8 .c9:-ms-input-placeholder,
+.c8 .c12:-ms-input-placeholder {
+  color: currentColor;
+}
+
+.c8 .c9::placeholder,
+.c8 .c12::placeholder {
+  color: currentColor;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #EAEAEA;
+  border-radius: 0.2rem;
+  padding: 0 1.6rem;
+  border: 0.2rem solid;
+  border-color: #EAEAEA;
+}
+
+.c5:focus-within {
+  box-shadow: 0 0 0.5rem #ED3237;
+}
+
+.c7 {
+  color: #030517;
+  font-family: Poppins,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif;
+  font-size: 1.6rem;
+  padding: 0.8rem 0;
+  padding-left: 1.6rem;
+  background: transparent;
+  border: 0;
+  outline: none;
+  width: 100%;
+}
+
+.c7:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 2.4rem #EAEAEA inset;
+  -webkit-filter: none;
+  filter: none;
+}
+
+.c4 {
+  font-size: 1.4rem;
+  color: #030517;
+  cursor: pointer;
+}
+
+.c2 .c3,
+.c2 .c6,
+.c2 .sc-jrsJWt {
+  cursor: not-allowed;
+  color: #8F8F8F;
+}
+
+.c2 .c3::-webkit-input-placeholder,
+.c2 .c6::-webkit-input-placeholder,
+.c2 .sc-jrsJWt::-webkit-input-placeholder {
+  color: currentColor;
+}
+
+.c2 .c3::-moz-placeholder,
+.c2 .c6::-moz-placeholder,
+.c2 .sc-jrsJWt::-moz-placeholder {
+  color: currentColor;
+}
+
+.c2 .c3:-ms-input-placeholder,
+.c2 .c6:-ms-input-placeholder,
+.c2 .sc-jrsJWt:-ms-input-placeholder {
+  color: currentColor;
+}
+
+.c2 .c3::placeholder,
+.c2 .c6::placeholder,
+.c2 .sc-jrsJWt::placeholder {
+  color: currentColor;
 }
 
 .c0 {
@@ -115,21 +218,15 @@ exports[`<PatientInfo /> should render patient informations 1`] = `
   padding: 2.4rem;
 }
 
-.c0 .c2 {
+.c0 .sc-crzoAE {
   right: -1rem;
 }
 
-.c0 .c2:before {
+.c0 .sc-crzoAE:before {
   border-right-width: 1rem;
 }
 
-.c4 {
-  font-size: 1.4rem;
-  color: #8F8F8F;
-  margin-bottom: 2.4rem;
-}
-
-.c5 {
+.c14 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -143,7 +240,7 @@ exports[`<PatientInfo /> should render patient informations 1`] = `
   align-items: center;
 }
 
-.c5 > button {
+.c14 > button {
   width: 100%;
   margin-bottom: 0.8rem;
 }
@@ -155,31 +252,25 @@ exports[`<PatientInfo /> should render patient informations 1`] = `
 }
 
 @media (min-width:768px) {
-  .c0 .c2 {
+  .c0 .sc-crzoAE {
     right: 2.4rem;
     top: 2.4rem;
     font-size: 1.8rem;
   }
 
-  .c0 .c2:before {
+  .c0 .sc-crzoAE:before {
     border: none;
   }
 }
 
 @media (min-width:768px) {
-  .c4 {
-    max-width: 77rem;
-  }
-}
-
-@media (min-width:768px) {
-  .c5 {
+  .c14 {
     -webkit-flex-direction: row-reverse;
     -ms-flex-direction: row-reverse;
     flex-direction: row-reverse;
   }
 
-  .c5 > button {
+  .c14 > button {
     width: initial;
     margin-bottom: 0;
   }
@@ -195,46 +286,165 @@ exports[`<PatientInfo /> should render patient informations 1`] = `
     Patient Name
   </h2>
   <div
-    class="c2 c3"
-    color="secondary"
+    class="c2"
+    disabled=""
   >
-    12/05/2021
+    <label
+      class="c3 c4"
+      for="name"
+    >
+      Nome
+    </label>
+    <div
+      class="c5"
+    >
+      <input
+        class="c6 c7"
+        disabled=""
+        id="name"
+        name="name"
+        type="text"
+        value="Patient Name"
+      />
+    </div>
   </div>
-  <p
-    class="c4"
-  >
-    Patient Address, 32
-  </p>
-  <p
-    class="c4"
-  >
-    (19) 98877 5566
-  </p>
-  <p
-    class="c4"
-  >
-    234.456.123-89
-  </p>
-  <p
-    class="c4"
-  >
-    54.234.456-4
-  </p>
-  <p
-    class="c4"
-  >
-    12/05/1998
-  </p>
   <div
-    class="c5"
+    class="c8"
+    disabled=""
+  >
+    <label
+      class="c9 c10"
+      for="address"
+    >
+      Endereço
+    </label>
+    <div
+      class="c11"
+    >
+      <textarea
+        class="c12 c13"
+        disabled=""
+        id="address"
+        name="address"
+        role="textbox"
+      >
+        Patient Address, 32
+      </textarea>
+    </div>
+  </div>
+  <div
+    class="c2"
+    disabled=""
+  >
+    <label
+      class="c3 c4"
+      for="phone"
+    >
+      Telefones
+    </label>
+    <div
+      class="c5"
+    >
+      <input
+        class="c6 c7"
+        disabled=""
+        id="phone"
+        name="phone"
+        type="text"
+        value="19 98877 5566"
+      />
+    </div>
+  </div>
+  <div
+    class="c2"
+    disabled=""
+  >
+    <label
+      class="c3 c4"
+      for="cpf"
+    >
+      CPF
+    </label>
+    <div
+      class="c5"
+    >
+      <input
+        class="c6 c7"
+        disabled=""
+        id="cpf"
+        name="cpf"
+        type="text"
+        value="234.456.123-89"
+      />
+    </div>
+  </div>
+  <div
+    class="c2"
+    disabled=""
+  >
+    <label
+      class="c3 c4"
+      for="rg"
+    >
+      RG
+    </label>
+    <div
+      class="c5"
+    >
+      <input
+        class="c6 c7"
+        disabled=""
+        id="rg"
+        name="rg"
+        type="text"
+        value="54.234.456-4"
+      />
+    </div>
+  </div>
+  <div
+    class="c2"
+    disabled=""
+  >
+    <label
+      class="c3 c4"
+      for="birth_date"
+    >
+      Data de nascimento
+    </label>
+    <div
+      class="c5"
+    >
+      <input
+        class="c6 c7"
+        disabled=""
+        id="birth_date"
+        name="birth_date"
+        type="text"
+        value="12/05/1998"
+      />
+    </div>
+  </div>
+  <div
+    class=""
+  >
+    <img
+      alt="Patient Name"
+      height="151"
+      layout="responsive"
+      src="photo.jpg"
+      width="113"
+    />
+  </div>
+  <div
+    class="c14"
   >
     <button
       aria-label="Add to attending"
-      class="c6"
+      class="c15"
     >
       <svg
         aria-hidden="true"
-        class="c7"
+        class="c16"
         fill="currentColor"
         focusable="false"
         viewBox="0 0 24 24"

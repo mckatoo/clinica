@@ -63,3 +63,5 @@ export const ButtonsWrapper = styled.div`
     `}
   `}
 `
+
+export const Photo = styled.div``

@@ -1,4 +1,4 @@
-import { TextareaHTMLAttributes, useState } from 'react'
+import { TextareaHTMLAttributes, useEffect, useState } from 'react'
 
 import * as S from './styles'
 
@@ -21,13 +21,18 @@ const TextAreaField = ({
 }: TextAreaFieldProps) => {
   const [value, setValue] = useState(initialValue)
 
+  const resizeElement = () => {
+    const element = document.getElementById(name!)
+    !!element && (element.style.height = '5px')
+    !!element && (element.style.height = `${element!.scrollHeight}px`)
+  }
+  useEffect(() => {
+    resizeElement()
+  }, [value])
+
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const element = e.currentTarget
     const newValue = element.value
-    element.style.height = '5px'
-    element.style.width = '25px'
-    element.style.height = `${element.scrollHeight}px`
-    element.style.width = `${element.scrollHeight}px`
     setValue(newValue)
 
     !!onTextAreaChange && onTextAreaChange(newValue)
@@ -42,7 +47,6 @@ const TextAreaField = ({
           role='textbox'
           value={value}
           disabled={disabled}
-          contentEditable={!disabled}
           name={name!}
           {...(label ? { id: name } : {})}
           {...props}

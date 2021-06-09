@@ -8,10 +8,11 @@ const props = {
   id: '1',
   name: 'Patient Name',
   address: 'Patient Address, 32',
-  phone: '(19) 98877 5566',
+  phone: '19 98877 5566',
+  photo: 'photo.jpg',
   cpf: '234.456.123-89',
   rg: '54.234.456-4',
-  birth_date: '12/05/1998',
+  birth_date: '12/05/1998'
 }
 
 describe('<PatientInfo />', () => {
@@ -21,11 +22,16 @@ describe('<PatientInfo />', () => {
     expect(
       screen.getByRole('heading', { name: /patient name/i })
     ).toBeInTheDocument()
-    expect(screen.getByText('Patient Address, 32')).toBeInTheDocument()
-    expect(screen.getByText('(19) 98877 5566')).toBeInTheDocument()
-    expect(screen.getByText('234.456.123-89')).toBeInTheDocument()
-    expect(screen.getByText('54.234.456-4')).toBeInTheDocument()
-    expect(screen.getByText('12/05/1998')).toBeInTheDocument()
+    expect(screen.getByLabelText(/nome/i)).toHaveValue('Patient Name')
+    expect(screen.getByLabelText(/Endereço/i)).toHaveValue(
+      'Patient Address, 32'
+    )
+    expect(screen.getByLabelText(/Telefones/i)).toHaveValue('19 98877 5566')
+    expect(screen.getByLabelText(/cpf/i)).toHaveValue('234.456.123-89')
+    expect(screen.getByLabelText(/rg/i)).toHaveValue('54.234.456-4')
+    expect(screen.getByLabelText(/Data de nascimento/i)).toHaveValue(
+      '12/05/1998'
+    )
 
     expect(container.firstChild).toMatchSnapshot()
   })
