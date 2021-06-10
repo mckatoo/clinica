@@ -4,11 +4,11 @@ import media from 'styled-media-query'
 import { Container } from 'components/Container'
 
 export const Main = styled.main`
-  margin-top: 5rem;
+  /* margin-top: 5rem; */
 
   ${media.greaterThan('medium')`
     /* margin-top: 45rem; */
-    margin-top: 15rem;
+    /* margin-top: 15rem; */
   `}
 `
 
