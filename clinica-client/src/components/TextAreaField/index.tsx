@@ -21,14 +21,15 @@ const TextAreaField = ({
 }: TextAreaFieldProps) => {
   const [value, setValue] = useState(initialValue)
 
-  const resizeElement = () => {
-    const element = document.getElementById(name!)
-    !!element && (element.style.height = '5px')
-    !!element && (element.style.height = `${element!.scrollHeight}px`)
-  }
   useEffect(() => {
+    const resizeElement = () => {
+      const element = document.getElementById(name!)
+      !!element && (element.style.height = '5px')
+      !!element && (element.style.height = `${element!.scrollHeight}px`)
+    }
+
     resizeElement()
-  }, [value])
+  }, [value, name])
 
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const element = e.currentTarget
@@ -44,7 +45,7 @@ const TextAreaField = ({
       <S.TextAreaWrapper>
         <S.TextArea
           onChange={onChange}
-          role='textbox'
+          role="textbox"
           value={value}
           disabled={disabled}
           name={name!}

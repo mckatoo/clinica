@@ -17,13 +17,13 @@ export default {
   }
 } as Meta
 
-export const Default: Story<TextAreaFieldProps> = args => (
+export const Default: Story<TextAreaFieldProps> = (args) => (
   <div style={{ maxWidth: 300, padding: 15 }}>
     <TextAreaField {...args} />
   </div>
 )
 
-export const withError: Story<TextAreaFieldProps> = args => (
+export const withError: Story<TextAreaFieldProps> = (args) => (
   <div style={{ maxWidth: 300, padding: 15 }}>
     <TextAreaField {...args} />
   </div>
@@ -33,7 +33,7 @@ withError.args = {
   error: 'Ops...something is wrong'
 }
 
-export const withInitialValue: Story<TextAreaFieldProps> = args => (
+export const withInitialValue: Story<TextAreaFieldProps> = (args) => (
   <div style={{ maxWidth: 300, padding: 15 }}>
     <TextAreaField {...args} />
   </div>
