@@ -1,3 +1,4 @@
+import userEvent from '@testing-library/user-event'
 import 'session.mock'
 
 import { render, screen } from 'utils/test-utils'
@@ -39,8 +40,18 @@ describe('<PatientInfo />', () => {
   it('should render buttons', () => {
     render(<PatientInfo {...props} />)
 
-    expect(
-      screen.getByRole('button', { name: /add to attending/i })
-    ).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /editar/i })).toBeInTheDocument()
+  })
+
+  it('should call method when button clicked', () => {
+    render(<PatientInfo {...props} />)
+
+    const button = screen.getByRole('button', { name: /editar/i })
+
+    expect(button).toBeInTheDocument()
+
+    userEvent.click(button)
+
+    expect(screen.getByRole('button', { name: /salvar/i }))
   })
 })
