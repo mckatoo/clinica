@@ -29,7 +29,7 @@ export default {
     lightBg: '#07BEB8',
     white: '#EBFFFD',
     black: '#030517',
-    lightGray: '#EAEAEA',
+    lightGray: '#E5F6FF',
     gray: '#8F8F8F',
     darkGray: '#2E2F42',
     red: '#EF4549',
