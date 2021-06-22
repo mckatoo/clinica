@@ -20,18 +20,16 @@ const AppointmentItem = ({
 
   return (
     <S.Wrapper>
-      <S.GameContent>
         <S.ImageBox>
           <Image src={photo} alt={patient} layout='fill' objectFit='cover' />
         </S.ImageBox>
-
         <S.Content>
-          <S.Title>{patient}</S.Title>
-          <S.Group>
-            <S.Price>{start}</S.Price>
-          </S.Group>
+          <S.Name>{patient}</S.Name>
         </S.Content>
-      </S.GameContent>
+
+        <S.Group>
+          <S.Hour>{start}</S.Hour>
+        </S.Group>
     </S.Wrapper>
   )
 }

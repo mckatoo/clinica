@@ -1,7 +1,7 @@
 import AppointmentItem from 'components/AppointmentItem'
-import mock from 'components/Calendar/mock'
 import Empty from 'components/Empty'
 
+import mock from './mock'
 import * as S from './styles'
 
 export type AppointmentListProps = {

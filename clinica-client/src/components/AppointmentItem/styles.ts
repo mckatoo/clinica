@@ -12,23 +12,19 @@ export const Wrapper = styled.div`
   `}
 `
 
-export const GameContent = styled.div`
-  display: flex;
-  width: 100%;
-`
-
 export const ImageBox = styled.div`
   ${({ theme }) => css`
-    flex-shrink: 0;
+    /* flex-shrink: 0;
     margin-right: 1.2rem;
-    width: 9.6rem;
+    width: 3rem;
     min-height: 5.6rem;
-    position: relative;
+    position: relative; */
+    radius: ${theme.border.circle};
 
     ${media.greaterThan('medium')`
       margin-right: ${theme.spacings.xsmall};
-      width: 15rem;
-      height: 7rem;
+      /* width: 15rem;
+      height: 7rem; */
     `};
   `}
 `
@@ -40,7 +36,7 @@ export const Content = styled.div`
   width: 100%;
 `
 
-export const Title = styled.h3`
+export const Name = styled.h3`
   ${({ theme }) => css`
     font-size: ${theme.font.sizes.small};
     line-height: ${theme.font.sizes.small};
@@ -55,7 +51,7 @@ export const Title = styled.h3`
   `}
 `
 
-export const Price = styled.div`
+export const Hour = styled.div`
   ${({ theme }) => css`
     color: ${theme.colors.white};
     padding: 0.2rem ${theme.spacings.xxsmall};
@@ -63,20 +59,6 @@ export const Price = styled.div`
     border-radius: ${theme.border.radius};
     font-size: ${theme.font.sizes.small};
     font-weight: ${theme.font.bold};
-  `}
-`
-
-export const DownloadLink = styled.a`
-  ${({ theme }) => css`
-    color: ${theme.colors.primary};
-    margin-left: ${theme.spacings.xxsmall};
-    position: relative;
-
-    & > svg {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-    }
   `}
 `
 
@@ -99,22 +81,6 @@ export const PaymentContent = styled.div`
   `}
 `
 
-export const CardInfo = styled.div`
-  ${({ theme }) => css`
-    display: flex;
-    align-items: center;
-    position: relative;
-
-    img {
-      object-fit: contain;
-    }
-
-    ${media.lessThan('medium')`
-      margin-top: ${theme.spacings.xsmall};
-    `}
-  `}
-`
-
 export const Group = styled.div`
   display: flex;
   align-items: center;
@@ -122,7 +88,7 @@ export const Group = styled.div`
   width: 100%;
 `
 
-export const Remove = styled.div`
+export const Cancel = styled.div`
   ${({ theme }) => css`
     cursor: pointer;
     color: ${theme.colors.primary};
