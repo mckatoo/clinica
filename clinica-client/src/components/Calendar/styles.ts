@@ -19,7 +19,7 @@ export const Body = styled.section`
       list-style-type: none;
     }
 
-    .days {
+    .week {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -47,10 +47,11 @@ export const Body = styled.section`
         place-items: center;
         font-weight: bold;
         position: relative;
+        cursor: pointer;
       }
       .prev,
       .next {
-        color: darken(-0.2, ${theme.colors.gray});
+        color: ${darken(-0.2, theme.colors.gray)};
       }
       .active {
         background: ${theme.colors.secondary};
@@ -58,8 +59,8 @@ export const Body = styled.section`
         border-radius: ${theme.border.radius};
       }
       .circle {
-        border: 2px solid;
-        border-radius: ${theme.border.radius};
+        border: 2px solid ${theme.colors.secondary};
+        border-radius: ${theme.border.circle};
         span {
           position: absolute;
           top: -0.75rem;
@@ -81,14 +82,16 @@ export const Month = styled.section`
   padding: 0 1.25rem;
   color: $gray;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 `
 
 export const CalendarFooter = styled.div`
   ${({ theme }) => css`
     font-weight: ${theme.font.bold};
-    a {
+    display: flex;
+    justify-content: center;
+    button {
       text-decoration: none;
       color: inherit;
       border: 2px solid ${theme.colors.secondary};
@@ -96,7 +99,6 @@ export const CalendarFooter = styled.div`
       width: 3.5rem;
       height: 3.5rem;
       padding-top: 0.25rem;
-      display: grid;
       place-items: center;
     }
   `}
