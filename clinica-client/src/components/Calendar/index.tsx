@@ -2,12 +2,11 @@ import { useEffect, useState } from 'react'
 
 import { Plus, SkipNext, SkipPrevious } from '@styled-icons/boxicons-regular'
 
-import mock from './mock'
 import * as S from './styles'
 
 type DateProps = {
   weekday: string
-  day: string
+  date: string
   month: string
   year: string
   totalAppointments: number
@@ -17,52 +16,25 @@ export type CalendarProps = {
   month: DateProps[]
 }
 
-const Calendar = ({ month = mock }: CalendarProps) => {
-  // const months = [
-  //   'janeiro',
-  //   'fevereiro',
-  //   'março',
-  //   'abril',
-  //   'maio',
-  //   'junho',
-  //   'julho',
-  //   'agosto',
-  //   'setembro',
-  //   'outubro',
-  //   'novembro',
-  //   'dezembro'
-  // ]
+const Calendar = ({ month }: CalendarProps) => {
   const week = ['dom.', 'seg.', 'ter.', 'qua.', 'qui.', 'sex.', 'sáb.']
 
-  const [date, setDate] = useState(new Date())
-  // const [monthOfCalendar, setMonthOfCalendar] = useState(
-  //   months[date.getMonth()]
-  // )
+  const [selectedDate, setSelectedDate] = useState(new Date())
 
-  const daysOfMonth = fillMonth(date)
-  const previewDays = fillPreviewDays(date)
-  const nextDays = fillNextDays(date)
+  const daysOfMonth = fillMonth(selectedDate)
+  const previewDays = fillPreviewDays(selectedDate)
+  const nextDays = fillNextDays(selectedDate)
 
-  function weekdayFromDate (date: Date, format?: 'withNumber') {
-    const weekday = Intl.DateTimeFormat('pt-BR', { weekday: 'short' }).format(
-      date
+  function getTotalAppointmentsOfDay (date: Date): number {
+    const _DATE = date.getDate().toString()
+    const _MONTH = (date.getMonth() + 1).toString()
+    const _YEAR = date.getFullYear().toString()
+
+    const total = !!month && month.find(
+      d => d.date === _DATE && d.month === _MONTH && d.year === _YEAR
     )
-    if (format === 'withNumber') return date.getDay().toString()
 
-    return weekday
-  }
-
-  function getTotalAppointmentsOfDay (day: Date): number {
-    const _DAY = day.getDate().toString()
-    const _MONTH = (day.getMonth() + 1).toString()
-    const _YEAR = day.getFullYear().toString()
-
-    const date = month.find(
-      d => d.day === _DAY && d.month === _MONTH && d.year === _YEAR
-    )
-    const total = date?.totalAppointments || 0
-
-    return total
+    return total?.totalAppointments || 0
   }
 
   function fillPreviewDays (date?: Date): DateProps[] {
@@ -71,11 +43,13 @@ const Calendar = ({ month = mock }: CalendarProps) => {
     const cursor = date || new Date()
     cursor.setDate(1)
 
-    while (weekdayFromDate(cursor, 'withNumber') !== '0') {
+    while (cursor.getDay() > 0) {
       cursor.setDate(cursor.getDate() - 1)
       previewDays.push({
-        weekday: weekdayFromDate(cursor),
-        day: cursor.getDate().toString(),
+        weekday: Intl.DateTimeFormat('pt-BR', { weekday: 'short' }).format(
+          cursor
+        ),
+        date: cursor.getDate().toString(),
         month: (cursor.getMonth() + 1).toString(),
         year: cursor.getFullYear().toString(),
         totalAppointments: getTotalAppointmentsOfDay(cursor)
@@ -92,15 +66,17 @@ const Calendar = ({ month = mock }: CalendarProps) => {
     const cursor = date || new Date()
     cursor.setMonth(cursor.getMonth() + 1)
     cursor.setDate(1)
-    cursor.setDate(cursor.getDate() - 1) //31
+    cursor.setDate(cursor.getDate() - 1)
     const nextMonth = cursor.getMonth() < 11 ? cursor.getMonth() + 1 : 0
 
-    while (weekdayFromDate(cursor, 'withNumber') !== '6') {
+    while (cursor.getDay() < 6) {
       cursor.setDate(cursor.getDate() + 1)
       if (cursor.getMonth() === nextMonth) {
         nextDays.push({
-          weekday: weekdayFromDate(cursor),
-          day: cursor.getDate().toString(),
+          weekday: Intl.DateTimeFormat('pt-BR', { weekday: 'short' }).format(
+            cursor
+          ),
+          date: cursor.getDate().toString(),
           month: (cursor.getMonth() + 1).toString(),
           year: cursor.getFullYear().toString(),
           totalAppointments: getTotalAppointmentsOfDay(cursor)
@@ -121,8 +97,10 @@ const Calendar = ({ month = mock }: CalendarProps) => {
 
     while (cursor.getMonth() === this_month) {
       calendarMonth.push({
-        weekday: weekdayFromDate(cursor),
-        day: cursor.getDate().toString(),
+        weekday: Intl.DateTimeFormat('pt-BR', { weekday: 'short' }).format(
+          cursor
+        ),
+        date: cursor.getDate().toString(),
         month: (cursor.getMonth() + 1).toString(),
         year: cursor.getFullYear().toString(),
         totalAppointments: getTotalAppointmentsOfDay(cursor)
@@ -135,29 +113,31 @@ const Calendar = ({ month = mock }: CalendarProps) => {
   }
 
   function handlePrev () {
-    date.setMonth(date.getMonth() - 1)
-    setDate(date)
+    setSelectedDate(
+      new Date(selectedDate.getFullYear(),selectedDate.getMonth()-1,selectedDate.getDate())
+      )
+    }
+
+    function handleNext () {
+      setSelectedDate(
+      new Date(selectedDate.getFullYear(),selectedDate.getMonth()+1,selectedDate.getDate())
+    )
   }
 
-  function handleNext () {
-    date.setMonth(date.getMonth() + 1)
-    setDate(date)
-  }
-
-  function isNow (d: Pick<DateProps, 'day' | 'month' | 'year'>): Boolean {
+  function isNow (d: Pick<DateProps, 'date' | 'month' | 'year'>): Boolean {
     return (
       Intl.DateTimeFormat('pt-BR').format(new Date()) ===
       Intl.DateTimeFormat('pt-BR').format(
-        new Date(`${d.year}/${d.month}/${d.day}`)
+        new Date(`${d.year}/${d.month}/${d.date}`)
       )
     )
   }
 
   useEffect(() => {
-    fillMonth(date)
-    fillPreviewDays(date)
-    fillNextDays(date)
-  }, [date])
+    fillMonth(selectedDate)
+    fillPreviewDays(selectedDate)
+    fillNextDays(selectedDate)
+  }, [selectedDate])
 
   return (
     <S.Wrapper>
@@ -167,9 +147,9 @@ const Calendar = ({ month = mock }: CalendarProps) => {
         </button>
         <h3>
           {Intl.DateTimeFormat('pt-BR', { month: 'long' })
-            .format(date)
+            .format(selectedDate)
             .toUpperCase()}{' '}
-          de {date.getFullYear()}
+          de {selectedDate.getFullYear()}
         </h3>
         <button onClick={handleNext}>
           <SkipNext size={24} />
@@ -185,72 +165,72 @@ const Calendar = ({ month = mock }: CalendarProps) => {
           {previewDays.map(d =>
             !!(d.totalAppointments > 0) ? (
               <li
-                key={d.day}
+                key={d.date}
                 className='prev circle'
                 onClick={() =>
-                  setDate(new Date(`${d.year} ${d.month} ${d.day}`))
+                  setSelectedDate(new Date(`${d.year} ${d.month} ${d.date}`))
                 }
               >
-                {d.day}
+                {d.date}
                 <span>{d.totalAppointments}</span>
               </li>
             ) : (
               <li
-                key={d.day}
+                key={d.date}
                 className='prev'
                 onClick={() =>
-                  setDate(new Date(`${d.year} ${d.month} ${d.day}`))
+                  setSelectedDate(new Date(`${d.year} ${d.month} ${d.date}`))
                 }
               >
-                {d.day}
+                {d.date}
               </li>
             )
           )}
           {daysOfMonth.map(d =>
             !!(d.totalAppointments > 0) ? (
               <li
-                key={d.day}
+                key={d.date}
                 className={!!isNow(d) ? 'active circle' : 'circle'}
                 onClick={() => {
-                  setDate(new Date(`${d.year} ${d.month} ${d.day}`))
+                  setSelectedDate(new Date(`${d.year} ${d.month} ${d.date}`))
                 }}
               >
-                {d.day}
+                {d.date}
                 <span>{d.totalAppointments}</span>
               </li>
             ) : (
               <li
-                key={d.day}
+                key={d.date}
                 className={!!isNow(d) ? 'active' : ''}
                 onClick={() =>
-                  setDate(new Date(`${d.year} ${d.month} ${d.day}`))
+                  setSelectedDate(new Date(`${d.year} ${d.month} ${d.date}`))
                 }
               >
-                {d.day}
+                {d.date}
               </li>
             )
           )}
           {nextDays.map(d =>
             !!(d.totalAppointments > 0) ? (
               <li
-                key={d.day}
+                key={d.date}
                 className='next circle'
                 onClick={() =>
-                  setDate(new Date(`${d.year} ${d.month} ${d.day}`))
+                  setSelectedDate(new Date(`${d.year} ${d.month} ${d.date}`))
                 }
               >
-                {d.day}
+                {d.date}
                 <span>{d.totalAppointments}</span>
               </li>
             ) : (
               <li
-                key={d.day}
+                key={d.date}
                 className='next'
                 onClick={() =>
-                  setDate(new Date(`${d.year} ${d.month} ${d.day}`))
+                  setSelectedDate(new Date(`${d.year} ${d.month} ${d.date}`))
                 }
               >
-                {d.day}
+                {d.date}
               </li>
             )
           )}
