@@ -7,7 +7,7 @@ export default {
   title: 'Calendar',
   component: Calendar,
   args: {
-    appointmentList: mock
+    month: mock
   }
 } as Meta
 
