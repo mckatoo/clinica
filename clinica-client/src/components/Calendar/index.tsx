@@ -4,7 +4,7 @@ import { Plus, SkipNext, SkipPrevious } from '@styled-icons/boxicons-regular'
 
 import * as S from './styles'
 
-type DateProps = {
+export type DateProps = {
   weekday: string
   date: string
   month: string
@@ -30,9 +30,11 @@ const Calendar = ({ month }: CalendarProps) => {
     const _MONTH = (date.getMonth() + 1).toString()
     const _YEAR = date.getFullYear().toString()
 
-    const total = !!month && month.find(
-      d => d.date === _DATE && d.month === _MONTH && d.year === _YEAR
-    )
+    const total =
+      !!month &&
+      month.find(
+        d => d.date === _DATE && d.month === _MONTH && d.year === _YEAR
+      )
 
     return total?.totalAppointments || 0
   }
@@ -114,13 +116,21 @@ const Calendar = ({ month }: CalendarProps) => {
 
   function handlePrev () {
     setSelectedDate(
-      new Date(selectedDate.getFullYear(),selectedDate.getMonth()-1,selectedDate.getDate())
+      new Date(
+        selectedDate.getFullYear(),
+        selectedDate.getMonth() - 1,
+        selectedDate.getDate()
       )
-    }
+    )
+  }
 
-    function handleNext () {
-      setSelectedDate(
-      new Date(selectedDate.getFullYear(),selectedDate.getMonth()+1,selectedDate.getDate())
+  function handleNext () {
+    setSelectedDate(
+      new Date(
+        selectedDate.getFullYear(),
+        selectedDate.getMonth() + 1,
+        selectedDate.getDate()
+      )
     )
   }
 
@@ -131,6 +141,10 @@ const Calendar = ({ month }: CalendarProps) => {
         new Date(`${d.year}/${d.month}/${d.date}`)
       )
     )
+  }
+
+  async function handleSelectedDate (date: DateProps) {
+    setSelectedDate(new Date(`${date.year} ${date.month} ${date.date}`))
   }
 
   useEffect(() => {
@@ -156,85 +170,58 @@ const Calendar = ({ month }: CalendarProps) => {
         </button>
       </S.Month>
       <S.Body>
-        <ul className='week'>
+        <S.Week>
           {week.map(w => (
             <li key={w}>{w}</li>
           ))}
-        </ul>
-        <ul className='dates'>
-          {previewDays.map(d =>
-            !!(d.totalAppointments > 0) ? (
-              <li
-                key={d.date}
-                className='prev circle'
-                onClick={() =>
-                  setSelectedDate(new Date(`${d.year} ${d.month} ${d.date}`))
-                }
-              >
-                {d.date}
+        </S.Week>
+        <S.Dates>
+          {previewDays.map(d => (
+            <S.Item
+              key={d.date}
+              prevOrNext
+              total={d.totalAppointments}
+              onClick={() =>
+                setSelectedDate(new Date(`${d.year} ${d.month} ${d.date}`))
+              }
+            >
+              {d.date}
+              {!!(d.totalAppointments > 0) && (
                 <span>{d.totalAppointments}</span>
-              </li>
-            ) : (
-              <li
-                key={d.date}
-                className='prev'
-                onClick={() =>
-                  setSelectedDate(new Date(`${d.year} ${d.month} ${d.date}`))
-                }
-              >
-                {d.date}
-              </li>
-            )
-          )}
-          {daysOfMonth.map(d =>
-            !!(d.totalAppointments > 0) ? (
-              <li
-                key={d.date}
-                className={!!isNow(d) ? 'active circle' : 'circle'}
-                onClick={() => {
-                  setSelectedDate(new Date(`${d.year} ${d.month} ${d.date}`))
-                }}
-              >
-                {d.date}
+              )}
+            </S.Item>
+          ))}
+          {daysOfMonth.map(d => (
+            <S.Item
+              key={d.date}
+              now={!!isNow(d)}
+              total={d.totalAppointments}
+              onClick={() =>
+                setSelectedDate(new Date(`${d.year} ${d.month} ${d.date}`))
+              }
+            >
+              {d.date}
+              {!!(d.totalAppointments > 0) && (
                 <span>{d.totalAppointments}</span>
-              </li>
-            ) : (
-              <li
-                key={d.date}
-                className={!!isNow(d) ? 'active' : ''}
-                onClick={() =>
-                  setSelectedDate(new Date(`${d.year} ${d.month} ${d.date}`))
-                }
-              >
-                {d.date}
-              </li>
-            )
-          )}
-          {nextDays.map(d =>
-            !!(d.totalAppointments > 0) ? (
-              <li
-                key={d.date}
-                className='next circle'
-                onClick={() =>
-                  setSelectedDate(new Date(`${d.year} ${d.month} ${d.date}`))
-                }
-              >
-                {d.date}
+              )}
+            </S.Item>
+          ))}
+          {nextDays.map(d => (
+            <S.Item
+              key={d.date}
+              prevOrNext
+              total={d.totalAppointments}
+              onClick={() =>
+                setSelectedDate(new Date(`${d.year} ${d.month} ${d.date}`))
+              }
+            >
+              {d.date}
+              {!!(d.totalAppointments > 0) && (
                 <span>{d.totalAppointments}</span>
-              </li>
-            ) : (
-              <li
-                key={d.date}
-                className='next'
-                onClick={() =>
-                  setSelectedDate(new Date(`${d.year} ${d.month} ${d.date}`))
-                }
-              >
-                {d.date}
-              </li>
-            )
-          )}
-        </ul>
+              )}
+            </S.Item>
+          ))}
+        </S.Dates>
       </S.Body>
       <S.CalendarFooter>
         <button onClick={handlePrev}>
